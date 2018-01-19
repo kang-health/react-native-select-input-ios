@@ -65,6 +65,7 @@ class SelectInput extends AbstractSelectInput {
             keyboardBackgroundColor={props.keyboardBackgroundColor}
             submitKeyText={props.submitKeyText}
             cancelKeyText={props.cancelKeyText}
+            buttonsStyle={props.buttonsStyle}
           />
         </View>
       </TouchableWithoutFeedback>
@@ -84,6 +85,7 @@ SelectInput.propTypes = {
   options:                 PropTypes.array,
   submitKeyText:           PropTypes.string,
   style:                   PropTypes.oneOfType([ViewPropTypes.style, PropTypes.arrayOf(ViewPropTypes.style)]),
+  buttonsStyle:            PropTypes.oneOfType([ViewPropTypes.style, PropTypes.arrayOf(ViewPropTypes.style)]),
   value:                   PropTypes.any,
 };
 

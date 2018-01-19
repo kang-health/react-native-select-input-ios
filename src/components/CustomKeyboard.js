@@ -12,7 +12,8 @@ import React, { Component } from 'react';
 import {
   Modal,
   TouchableWithoutFeedback,
-  View
+  View,
+  ViewPropTypes
 } from 'react-native';
 
 class CustomKeyboard extends Component {
@@ -33,33 +34,32 @@ class CustomKeyboard extends Component {
 
     return (
       <Modal animationType={'slide'} transparent={true} visible={props.visible}>
-        <TouchableWithoutFeedback onPress={this.onCancelPress.bind(this)}>
-          <View style={styles.container}>
-            <View style={styles.modal}>
-              <View style={[styles.buttonview, { backgroundColor: props.buttonsBackgroundColor }]}>
-                <KeyboardButton
-                  color={props.buttonsTextColor}
-                  onPress={this.onCancelPress.bind(this)}
-                  text={props.cancelKeyText}
-                  textAlign={'left'}
-                  textSize={props.buttonsTextSize}
-                />
+        <View style={styles.container}>
+          <View style={styles.modal}>
+            <View style={[styles.buttonview, { backgroundColor: props.buttonsBackgroundColor }]}>
+              <KeyboardButton
+                color={props.buttonsTextColor}
+                onPress={this.onCancelPress.bind(this)}
+                text={props.cancelKeyText}
+                textAlign={'left'}
+                textSize={props.buttonsTextSize}
+                buttonStyle={props.buttonsStyle}
+              />
 
-                <KeyboardButton
-                  color={props.buttonsTextColor}
-                  onPress={this.onSubmitPress.bind(this)}
-                  text={props.submitKeyText}
-                  textAlign={'right'}
-                  textSize={props.buttonsTextSize}
-                />
-              </View>
+              <KeyboardButton
+                color={props.buttonsTextColor}
+                onPress={this.onSubmitPress.bind(this)}
+                text={props.submitKeyText}
+                textAlign={'right'}
+                textSize={props.buttonsTextSize}
+              />
+            </View>
 
-              <View>
-                  {props.children}
-              </View>
+            <View>
+                {props.children}
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </Modal>
     );
   }
@@ -74,6 +74,7 @@ CustomKeyboard.propTypes =  {
   onSubmitPress:          PropTypes.func.isRequired,
   submitKeyText:          PropTypes.string,
   visible:                PropTypes.bool.isRequired,
+  buttonsStyle:           PropTypes.oneOfType([ViewPropTypes.style, PropTypes.arrayOf(ViewPropTypes.style)]),
 };
 
 export default CustomKeyboard;

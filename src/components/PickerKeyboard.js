@@ -11,6 +11,7 @@ import React, { Component } from 'react';
 
 import {
   Picker,
+  ViewPropTypes
 } from 'react-native';
 
 class PickerKeyboard extends Component {
@@ -81,6 +82,7 @@ class PickerKeyboard extends Component {
         onSubmitPress={this.onSubmitPress.bind(this)}
         submitKeyText={props.submitKeyText}
         visible={this.state.visible}
+        buttonsStyle={props.buttonsStyle}
         >
         <Picker
           ref={(c) => { this.picker = c; }}
@@ -117,6 +119,7 @@ PickerKeyboard.propTypes = {
   style:                  PropTypes.object,
   submitKeyText:          PropTypes.string,
   value:                  PropTypes.any,
+  buttonsStyle:           PropTypes.oneOfType([ViewPropTypes.style, PropTypes.arrayOf(ViewPropTypes.style)]),
 };
 
 export default PickerKeyboard;
